@@ -2,6 +2,8 @@ from fastapi import APIRouter, UploadFile, File, HTTPException
 import os
 import shutil
 
+from app.services.resume_service import extract_resume_text
+
 router = APIRouter()
 
 UPLOAD_FOLDER = "../uploads"
@@ -26,7 +28,10 @@ async def upload_resume(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
+    resume_text = extract_resume_text(file_path)
+
     return {
         "message": "Resume uploaded successfully",
-        "filename": file.filename
+        "filename": file.filename,
+        "text": resume_text
     }
