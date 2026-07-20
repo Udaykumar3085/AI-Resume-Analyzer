@@ -1,38 +1,382 @@
-.App {
+/* ===========================
+   AI Resume Analyzer
+   Modern Dashboard UI
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.container>p {
+  text-align: center;
+  color: #d1d5db;
+  margin-bottom: 35px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ===========================
+   Cards
+=========================== */
+
+.card,
+.section-card,
+.score-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: .3s ease;
+}
+
+.card:hover,
+.section-card:hover,
+.score-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+.card h2,
+.section-card h3,
+.score-card h2 {
+  margin-bottom: 20px;
+}
+
+/* ===========================
+   File Upload
+=========================== */
+
+input[type=file] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+button {
+  border: none;
+  padding: 14px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+  transition: .3s;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: scale(1.03);
+}
+
+/* ===========================
+   ATS Score
+=========================== */
+
+.score {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  color: #22c55e;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 18px;
+  background: rgba(255, 255, 255, .15);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg,
+      #22c55e,
+      #3b82f6);
+  border-radius: 30px;
+  transition: width .8s ease;
+}
+
+/* ===========================
+   Skills
+=========================== */
+
+.skill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-badge {
+  padding: 10px 18px;
+  background: #2563eb;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+}
+
+.skill-badge.missing {
+  background: #ef4444;
+}
+
+/* ===========================
+   Results Section
+=========================== */
+
+.results {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ===========================
+   Lists
+=========================== */
+
+.section-card ul {
+  padding-left: 20px;
+}
+
+.section-card li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  color: #f8fafc;
+}
+
+/* ===========================
+   Job Description Textarea
+=========================== */
+
+textarea {
+  width: 100%;
+  min-height: 180px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #f8fafc;
+  color: #111827;
+}
+
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+}
+
+/* ===========================
+   Download Button
+=========================== */
+
+.section-card button {
+  margin-top: 10px;
+}
+
+/* ===========================
+   Match Score
+=========================== */
+
+.section-card h2 {
+  text-align: center;
+  font-size: 42px;
+  color: #22c55e;
+  margin: 15px 0;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* ===========================
+   Animations
+=========================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.score-card,
+.section-card {
+  animation: fadeUp 0.6s ease;
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width: 992px) {
+
+  .container {
+    width: 95%;
+  }
+
+  .container h1 {
+    font-size: 34px;
+  }
+
+  .score {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .app {
+    padding: 20px 12px;
+  }
+
+  .container h1 {
+    font-size: 28px;
+  }
+
+  .container>p {
+    font-size: 15px;
+  }
+
+  .card,
+  .section-card,
+  .score-card {
+    padding: 18px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .score {
+    font-size: 34px;
+  }
+
+  .skill-container {
+    gap: 8px;
+  }
+
+  .skill-badge {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .container h1 {
+    font-size: 24px;
+  }
+
+  .container>p {
+    font-size: 14px;
+  }
+
+  .score {
+    font-size: 30px;
+  }
+
+  .skill-badge {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ===========================
+   Utility
+=========================== */
+
+.text-center {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mt-20 {
+  margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mt-30 {
+  margin-top: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mb-20 {
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.hidden {
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-card li {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  color: #f8fafc;
+}
+
+.section-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #f8fafc;
 }
